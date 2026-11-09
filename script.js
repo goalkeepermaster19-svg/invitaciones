@@ -1,4 +1,3 @@
-javascript
 /* =====================================================
    GLAM INVITATIONS
    MOTOR PRINCIPAL DE INVITACIONES
