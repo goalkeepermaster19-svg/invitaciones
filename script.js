@@ -1,6 +1,6 @@
 /* =====================================================
    GLAM INVITATIONS
-   MOTOR PRINCIPAL DE INVITACIONES
+   MOTOR PRINCIPAL + GOOGLE APPS SCRIPT + RSVP
    ===================================================== */
 
 
@@ -65,22 +65,18 @@ window.glamInvitacionCallback = function (respuesta) {
 
     const invitado = respuesta.invitado;
 
-    const campoNombre =
-        document.getElementById("nombreInvitado");
+    const campoNombre = document.getElementById("nombreInvitado");
+
+    const campoCantidad = document.getElementById("cantidadPases");
+
+    const campoAcompanantes = document.getElementById("nombresAcompanantes");
 
     if (campoNombre) {
 
         campoNombre.value = invitado.nombre || "";
 
         campoNombre.readOnly = true;
-
-        campoNombre.dispatchEvent(
-            new Event("input", { bubbles: true })
-        );
     }
-
-    const campoCantidad =
-        document.getElementById("cantidadPases");
 
     if (campoCantidad) {
 
@@ -89,14 +85,7 @@ window.glamInvitacionCallback = function (respuesta) {
         campoCantidad.value =
             invitado.pasesConfirmados ||
             invitado.pasesAsignados;
-
-        campoCantidad.dispatchEvent(
-            new Event("change", { bubbles: true })
-        );
     }
-
-    const campoAcompanantes =
-        document.getElementById("nombresAcompanantes");
 
     if (campoAcompanantes) {
 
@@ -104,10 +93,7 @@ window.glamInvitacionCallback = function (respuesta) {
             invitado.acompanantes || "";
     }
 
-    console.log(
-        "Invitado identificado:",
-        invitado.nombre
-    );
+    console.log("Invitado identificado:", invitado.nombre);
 
     console.log("Formulario RSVP actualizado.");
 };
@@ -134,6 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const paquetes = window.paquetesGLAM || {};
 
+    // Recuperar las funciones preparadas en datos.js.
     const funciones =
         evento.funciones ||
         paquetes[paquete] ||
@@ -155,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
         datosEvento.horaPrincipal || "17:00";
 
     const fechaEvento = fechaISO
-        ? new Date(fechaISO+"T"+horaPrincipal+":00")
+        ? new Date(fechaISO + "T" + horaPrincipal + ":00")
         : null;
 
 
@@ -164,6 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
        ===================================================== */
 
     function obtener(id) {
+
         return document.getElementById(id);
     }
 
@@ -176,6 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
             valor !== undefined &&
             valor !== null
         ) {
+
             elemento.textContent = valor;
         }
     }
@@ -185,6 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const elemento = obtener(id);
 
         if (elemento) {
+
             elemento.hidden = !condicion;
         }
     }
@@ -192,6 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function mostrarElemento(elemento, condicion) {
 
         if (elemento) {
+
             elemento.hidden = !condicion;
         }
     }
@@ -205,8 +196,11 @@ document.addEventListener("DOMContentLoaded", function () {
         if (url) {
 
             elemento.href = url;
+
             elemento.target = "_blank";
+
             elemento.rel = "noopener noreferrer";
+
             elemento.hidden = false;
 
         } else {
@@ -334,7 +328,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-        /* =====================================================
+    /* =====================================================
        7. ABRIR INVITACIÓN
        ===================================================== */
 
@@ -352,6 +346,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     }
+
+
     /* =====================================================
        8. ACTIVACIÓN DE FUNCIONES POR PAQUETE
        ===================================================== */
@@ -484,6 +480,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
 
         mostrar("mapaCeremonia", false);
+
         mostrar("mapaRecepcion", false);
     }
 
@@ -518,11 +515,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 const hora =
                     document.createElement("strong");
 
-                hora.textContent =
-                    actividad.hora || "";
-
                 const descripcion =
                     document.createElement("span");
+
+                hora.textContent =
+                    actividad.hora || "";
 
                 descripcion.textContent =
                     actividad.actividad || "";
@@ -598,11 +595,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 const tipo =
                     document.createElement("strong");
 
-                tipo.textContent =
-                    opcion.tipo || "";
-
                 const descripcion =
                     document.createElement("p");
+
+                tipo.textContent =
+                    opcion.tipo || "";
 
                 descripcion.textContent =
                     opcion.descripcion || "";
@@ -707,6 +704,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (fotos[indice]) {
 
                 imagen.src = fotos[indice];
+
                 imagen.hidden = false;
 
             } else {
@@ -834,8 +832,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.createElement("video");
 
             video.src = archivo;
+
             video.controls = true;
+
             video.playsInline = true;
+
             video.preload = "metadata";
 
             contenedorVideos.appendChild(video);
@@ -955,6 +956,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const parametros = new URLSearchParams({
 
             action: "TEMPLATE",
+
             text: tituloCalendar,
 
             dates:
@@ -962,6 +964,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 `${formatoCalendar(fechaFin)}`,
 
             details: datosEvento.mensaje || "",
+
             location: ubicacionCalendar,
 
             ctz:
@@ -1048,8 +1051,6 @@ document.addEventListener("DOMContentLoaded", function () {
         obtener("nombresAcompanantes");
 
 
-    // ACTIVAR CAMPOS SEGÚN EL PAQUETE
-
     mostrarElemento(
         campoPases,
         funciones.pasesIndividuales === true
@@ -1061,7 +1062,9 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    // SINCRONIZAR LOS CAMPOS DEL FORMULARIO
+    /* =====================================================
+       19.1 PREPARAR FORMULARIO RSVP
+       ===================================================== */
 
     function prepararFormularioRSVP() {
 
@@ -1094,11 +1097,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-
     prepararFormularioRSVP();
 
 
-    // ENVÍO DEL FORMULARIO
+    /* =====================================================
+       19.2 ENVÍO DEL FORMULARIO RSVP
+       ===================================================== */
 
     if (formularioRSVP) {
 
@@ -1124,8 +1128,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // VALIDAR QUE SE HAYA SELECCIONADO ASISTENCIA
-
                 const asistenciaSeleccionada =
                     document.querySelector(
                         'input[name="asistencia"]:checked'
@@ -1143,22 +1145,32 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // NORMALIZAR EL TEXTO DE ASISTENCIA
+                /* NORMALIZAR ASISTENCIA */
 
                 const asistenciaTexto =
-                    asistenciaSeleccionada.value
+                    String(asistenciaSeleccionada.value)
                         .toUpperCase()
                         .normalize("NFD")
                         .replace(/[\u0300-\u036f]/g, "")
                         .trim();
 
                 let asistencia = "";
-   
-                if (asistenciaTexto.startsWith("SI")) {
+
+                if (
+                    asistenciaTexto === "SI" ||
+                    asistenciaTexto.startsWith("SI ") ||
+                    asistenciaTexto.startsWith("SI,") ||
+                    asistenciaTexto.startsWith("ASIST")
+                ) {
 
                     asistencia = "SI";
 
-                } else if (asistenciaTexto.startsWith("NO")) {
+                } else if (
+                    asistenciaTexto === "NO" ||
+                    asistenciaTexto.startsWith("NO ") ||
+                    asistenciaTexto.startsWith("NO,") ||
+                    asistenciaTexto.startsWith("NO ASIST")
+                ) {
 
                     asistencia = "NO";
 
@@ -1179,14 +1191,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                const nombre = invitado.nombre;
+                /* DATOS DEL INVITADO */
+
+                const nombre =
+                    invitado.nombre ||
+                    (inputNombre ? inputNombre.value.trim() : "invitado");
 
                 let cantidadPases = 0;
 
                 let acompanantes = "";
 
 
-                // SI ASISTIRÁ
+                /* SI ASISTIRÁ */
 
                 if (asistencia === "SI") {
 
@@ -1219,7 +1235,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // PREPARAR DATOS PARA GOOGLE APPS SCRIPT
+                /* PREPARAR DATOS */
 
                 const datos = new URLSearchParams();
 
@@ -1238,7 +1254,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-                // DESACTIVAR BOTÓN DURANTE EL ENVÍO
+                /* DESACTIVAR BOTÓN */
 
                 const botonEnviar =
                     obtener("botonRSVP");
@@ -1258,7 +1274,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // ENVIAR AL BACKEND
+                /* ENVIAR AL BACKEND */
 
                 try {
 
@@ -1286,6 +1302,12 @@ document.addEventListener("DOMContentLoaded", function () {
                             "¡Gracias, " + nombre +
                             "! Tu respuesta fue enviada. " +
                             "Estamos procesando tu confirmación.";
+                    }
+
+                    if (botonEnviar) {
+
+                        botonEnviar.textContent =
+                            "RESPUESTA ENVIADA";
                     }
 
                 } catch (error) {
