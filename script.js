@@ -342,22 +342,25 @@ document.addEventListener("DOMContentLoaded", function () {
    // APERTURA DE INVITACIÓN
 document.addEventListener("click", function (e) {
 
+  // APERTURA DE INVITACIÓN
+document.addEventListener("click", function (e) {
+
     const boton = e.target.closest("#abrirInvitacion");
 
     if (!boton) return;
 
-    console.log("GLAM: apertura de invitación detectada");
-
     const contenido = document.getElementById("contenido");
 
-    if (contenido) {
-        contenido.classList.remove("oculto");
+    if (!contenido) return;
 
+    contenido.classList.remove("oculto");
+
+    setTimeout(function () {
         contenido.scrollIntoView({
             behavior: "smooth",
             block: "start"
         });
-    }
+    }, 100);
 
 });
 
