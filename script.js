@@ -870,11 +870,19 @@ document.addEventListener("DOMContentLoaded", function () {
        17. RSVP
        ===================================================== */
 
+        /* =====================================================
+       17. RSVP - CONEXIÓN CON GOOGLE SHEETS
+       ===================================================== */
+
     const formularioRSVP = obtener("formularioRSVP");
     const mensajeRSVP = obtener("mensajeRSVP");
 
     const campoPases = obtener("campoCantidadPases");
     const campoAcompanantes = obtener("campoAcompanantes");
+
+    const inputNombre = obtener("nombreInvitado");
+    const inputCantidadPases = obtener("cantidadPases");
+    const inputAcompanantes = obtener("nombresAcompanantes");
 
     mostrarElemento(
         campoPases,
@@ -886,50 +894,172 @@ document.addEventListener("DOMContentLoaded", function () {
         funciones.acompanantes === true
     );
 
+
+    // IDENTIFICAR Y AUTOCOMPLETAR AL INVITADO
+
+    function prepararFormularioRSVP() {
+
+        const invitado = window.glamInvitadoActual;
+
+        if (!invitado) return;
+
+        if (inputNombre) {
+
+            inputNombre.value = invitado.nombre || "";
+
+            inputNombre.readOnly = true;
+
+        }
+
+        if (inputCantidadPases) {
+
+            inputCantidadPases.max = invitado.pasesAsignados;
+
+            inputCantidadPases.value =
+                invitado.pasesConfirmados ||
+                invitado.pasesAsignados;
+
+        }
+
+        console.log(
+            "Formulario RSVP preparado para:",
+            invitado.nombre
+        );
+
+    }
+
+    // Por si el invitado ya fue identificado.
+    prepararFormularioRSVP();
+
+    // También se prepara cuando llega la respuesta del servidor.
+    const callbackOriginal = window.glamInvitacionCallback;
+
+    window.glamInvitacionCallback = function (respuesta) {
+
+        callbackOriginal(respuesta);
+
+        prepararFormularioRSVP();
+
+    };
+
+
+    // ENVÍO DE CONFIRMACIÓN
+
     if (formularioRSVP) {
 
-        formularioRSVP.addEventListener("submit", function (e) {
+        formularioRSVP.addEventListener("submit", async function (e) {
 
             e.preventDefault();
 
-            const nombre = obtener("nombreInvitado")?.value.trim();
+            const invitado = window.glamInvitadoActual;
+
+            if (!GLAM_TOKEN || !invitado) {
+
+                mensajeRSVP.textContent =
+                    "No pudimos identificar tu invitación. " +
+                    "Por favor, ingresa mediante tu enlace personalizado.";
+
+                return;
+
+            }
 
             const asistencia = document.querySelector(
                 'input[name="asistencia"]:checked'
             );
 
-            if (!nombre) {
-
-                if (mensajeRSVP) {
-                    mensajeRSVP.textContent =
-                        "Por favor, escribe tu nombre.";
-                }
-
-                return;
-            }
-
             if (!asistencia) {
 
-                if (mensajeRSVP) {
-                    mensajeRSVP.textContent =
-                        "Por favor, indica si asistirás.";
-                }
+                mensajeRSVP.textContent =
+                    "Por favor, indica si asistirás.";
 
                 return;
+
             }
 
-            if (mensajeRSVP) {
+            const nombre = invitado.nombre;
+
+            let cantidadPases = 0;
+
+            let acompanantes = "";
+
+            if (asistencia.value === "SI") {
+
+                cantidadPases = inputCantidadPases
+                    ? Number(inputCantidadPases.value)
+                    : Number(invitado.pasesAsignados);
+
+                if (
+                    !Number.isInteger(cantidadPases) ||
+                    cantidadPases < 1 ||
+                    cantidadPases > Number(invitado.pasesAsignados)
+                ) {
+
+                    mensajeRSVP.textContent =
+                        "La cantidad de pases no es válida. " +
+                        "Revisa los pases asignados a tu invitación.";
+
+                    return;
+
+                }
+
+                if (inputAcompanantes) {
+                    acompanantes = inputAcompanantes.value.trim();
+                }
+
+            }
+
+            const datos = new URLSearchParams();
+
+            datos.append("token", GLAM_TOKEN);
+            datos.append("asistencia", asistencia.value);
+            datos.append("cantidadPases", cantidadPases);
+            datos.append("acompanantes", acompanantes);
+
+            const botonEnviar = obtener("botonRSVP");
+
+            if (botonEnviar) {
+                botonEnviar.disabled = true;
+                botonEnviar.textContent = "ENVIANDO...";
+            }
+
+            mensajeRSVP.textContent =
+                "Estamos registrando tu confirmación...";
+
+            try {
+
+                await fetch(GLAM_API_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    body: datos
+                });
 
                 mensajeRSVP.textContent =
-                    "El sistema de confirmación está en configuración. " +
-                    "Pronto podrás registrar tu respuesta.";
+                    "¡Gracias, " + nombre +
+                    "! Tu respuesta fue enviada. " +
+                    "Estamos procesando tu confirmación.";
+
+                console.log(
+                    "Solicitud RSVP enviada al backend GLAM."
+                );
+
+            } catch (error) {
+
+                console.error("Error al enviar RSVP:", error);
+
+                mensajeRSVP.textContent =
+                    "No pudimos enviar tu respuesta. " +
+                    "Por favor, inténtalo nuevamente.";
+
+                if (botonEnviar) {
+                    botonEnviar.disabled = false;
+                    botonEnviar.textContent = "CONFIRMAR";
+                }
 
             }
 
         });
 
     }
-
 
     /* =====================================================
        18. INFORMACIÓN DE PRUEBA
