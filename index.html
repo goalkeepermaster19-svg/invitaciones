@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nuestra Boda</title>
+
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+    <!-- PORTADA -->
+    <section class="portada">
+
+        <div class="portada-contenido">
+
+            <p class="pequeno" id="etiquetaPortada">
+                NUESTRA BODA
+            </p>
+
+            <h1>
+                <span id="nombreNovia">Andrea</span>
+
+                <span class="ampersand">&</span>
+
+                <span id="nombreNovio">Carlos</span>
+            </h1>
+
+            <div class="fecha">
+
+                <span id="numeroDia">14</span>
+
+                <div id="mesAnio">
+                    NOVIEMBRE
+                    <br>
+                    <strong>2026</strong>
+                </div>
+
+            </div>
+
+            <p class="mensaje" id="mensajePortada">
+                Tenemos el honor de invitarte a celebrar nuestro amor.
+            </p>
+
+            <button id="abrirInvitacion" type="button">
+                ABRIR INVITACIÓN
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main id="contenido" class="oculto">
+
+        <!-- BIENVENIDA -->
+        <section class="bienvenida">
+
+            <p class="pequeno">CON MUCHO AMOR</p>
+
+            <h2 id="saludoEvento">¡Nos casamos!</h2>
+
+            <p id="mensajeBienvenida">
+                Queremos compartir contigo este momento tan especial.
+            </p>
+
+        </section>
+
+
+        <!-- CUENTA REGRESIVA -->
+        <section class="contador-seccion">
+
+            <h2>Falta poco...</h2>
+
+            <div class="contador">
+
+                <div>
+                    <span id="dias">00</span>
+                    <small>Días</small>
+                </div>
+
+                <div>
+                    <span id="horas">00</span>
+                    <small>Horas</small>
+                </div>
+
+                <div>
+                    <span id="minutos">00</span>
+                    <small>Minutos</small>
+                </div>
+
+                <div>
+                    <span id="segundos">00</span>
+                    <small>Segundos</small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- EVENTOS -->
+        <section class="eventos">
+
+            <h2>El gran día</h2>
+
+            <div class="eventos-container">
+
+                <!-- CEREMONIA -->
+                <div class="evento-card" id="tarjetaCeremonia">
+
+                    <div class="icono">♡</div>
+
+                    <h3 id="tituloCeremonia">Ceremonia</h3>
+
+                    <p id="fechaCeremonia">
+                        📅 14 de noviembre de 2026
+                    </p>
+
+                    <p id="horaCeremonia">
+                        🕐 17:00
+                    </p>
+
+                    <p id="lugarCeremonia">
+                        📍 Iglesia San Francisco
+                    </p>
+
+                    <a
+                        id="mapaCeremonia"
+                        class="boton-mapa"
+                        href="#"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        Cómo llegar
+                    </a>
+
+                </div>
+
+
+                <!-- RECEPCIÓN -->
+                <div class="evento-card" id="tarjetaRecepcion">
+
+                    <div class="icono">♡</div>
+
+                    <h3 id="tituloRecepcion">Recepción</h3>
+
+                    <p id="horaRecepcion">
+                        🕐 19:00
+                    </p>
+
+                    <p id="lugarRecepcion">
+                        📍 Salón Los Jardines
+                    </p>
+
+                    <a
+                        id="mapaRecepcion"
+                        class="boton-mapa"
+                        href="#"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        Cómo llegar
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ITINERARIO -->
+        <section
+            class="itinerario-seccion"
+            id="seccionItinerario"
+        >
+
+            <p class="pequeno">UN DÍA INOLVIDABLE</p>
+
+            <h2 id="tituloItinerario">
+                Programa de celebración
+            </h2>
+
+            <div
+                id="listaItinerario"
+                class="lista-itinerario"
+            >
+
+                <!-- Se genera desde datos.js -->
+
+            </div>
+
+        </section>
+
+
+        <!-- DRESS CODE -->
+        <section
+            class="dresscode-seccion"
+            id="seccionDressCode"
+        >
+
+            <p class="pequeno">PARA NUESTRO GRAN DÍA</p>
+
+            <h2 id="tituloDressCode">
+                Código de vestimenta
+            </h2>
+
+            <div class="dresscode-contenido">
+
+                <div class="dresscode-icono">
+                    ✧
+                </div>
+
+                <h3 id="descripcionDressCode">
+                    Elegante formal
+                </h3>
+
+                <p id="indicacionesDressCode">
+                    Te esperamos para celebrar juntos.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- SUGERENCIA DE REGALOS -->
+        <section
+            class="regalos-seccion"
+            id="seccionRegalos"
+        >
+
+            <p class="pequeno">UN DETALLE ESPECIAL</p>
+
+            <h2 id="tituloRegalos">
+                Sugerencia de regalos
+            </h2>
+
+            <p id="mensajeRegalos">
+                Tu presencia es nuestro mejor regalo.
+            </p>
+
+            <div
+                id="listaRegalos"
+                class="lista-regalos"
+            >
+
+                <!-- Se genera desde datos.js -->
+
+            </div>
+
+        </section>
+
+
+        <!-- GALERÍA -->
+        <section
+            class="galeria"
+            id="seccionGaleria"
+        >
+
+            <p class="pequeno">NUESTROS MOMENTOS</p>
+
+            <h2>Nuestra historia</h2>
+
+            <div class="galeria-grid">
+
+                <img
+                    id="fotoGaleria1"
+                    src=""
+                    alt="Fotografía de los anfitriones"
+                >
+
+                <img
+                    id="fotoGaleria2"
+                    src=""
+                    alt="Fotografía de los anfitriones"
+                >
+
+                <img
+                    id="fotoGaleria3"
+                    src=""
+                    alt="Fotografía de los anfitriones"
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- VISOR DE FOTOS -->
+        <div id="visorFoto">
+
+            <button
+                id="cerrarFoto"
+                type="button"
+            >
+                ×
+            </button>
+
+            <button
+                id="fotoAnterior"
+                class="flecha izquierda"
+                type="button"
+            >
+                ‹
+            </button>
+
+            <img
+                id="fotoGrande"
+                src=""
+                alt="Fotografía ampliada"
+            >
+
+            <button
+                id="fotoSiguiente"
+                class="flecha derecha"
+                type="button"
+            >
+                ›
+            </button>
+
+        </div>
+
+
+        <!-- VIDEOS -->
+        <section
+            class="videos-seccion"
+            id="seccionVideos"
+        >
+
+            <p class="pequeno">RECUERDOS EN MOVIMIENTO</p>
+
+            <h2>Momentos especiales</h2>
+
+            <div
+                id="contenedorVideos"
+                class="contenedor-videos"
+            >
+
+                <!-- Se generan desde datos.js -->
+
+            </div>
+
+        </section>
+
+
+        <!-- COMPARTIR FOTOGRAFÍAS -->
+        <section
+            class="compartir-fotos-seccion"
+            id="seccionCompartirFotos"
+        >
+
+            <p class="pequeno">TAMBIÉN QUEREMOS VERLO DESDE TU MIRADA</p>
+
+            <h2 id="tituloCompartirFotos">
+                Comparte tus fotografías
+            </h2>
+
+            <p id="mensajeCompartirFotos">
+                Queremos recordar nuestra celebración desde tu mirada.
+            </p>
+
+            <form id="formularioCompartirFotos">
+
+                <label for="fotosInvitados">
+                    Selecciona tus fotografías
+                </label>
+
+                <input
+                    type="file"
+                    id="fotosInvitados"
+                    name="fotos"
+                    accept="image/*"
+                    multiple
+                >
+
+                <button
+                    type="submit"
+                    id="botonCompartirFotos"
+                >
+                    Compartir fotografías
+                </button>
+
+                <p id="mensajeCompartirFotosEstado"></p>
+
+            </form>
+
+        </section>
+
+
+        <!-- AGENDAR EN CALENDARIO -->
+        <section
+            class="calendario-seccion"
+            id="seccionCalendario"
+        >
+
+            <p class="pequeno">RESERVA ESTA FECHA</p>
+
+            <h2>¡No olvides nuestro día!</h2>
+
+            <a
+                id="botonCalendario"
+                href="#"
+                target="_blank"
+                rel="noopener"
+                class="boton-calendario"
+            >
+                Agendar en Google Calendar
+            </a>
+
+        </section>
+
+
+        <!-- RSVP -->
+        <section
+            class="rsvp"
+            id="rsvp"
+        >
+
+            <p class="pequeno">
+                CONFIRMA TU ASISTENCIA
+            </p>
+
+            <h2>¿Nos acompañas?</h2>
+
+            <p>
+                Será un honor celebrar este día contigo.
+            </p>
+
+            <form id="formularioRSVP">
+
+                <!-- NOMBRE -->
+                <div class="campo-formulario">
+
+                    <label for="nombreInvitado">
+                        Nombre del invitado
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nombreInvitado"
+                        name="nombreInvitado"
+                        placeholder="Escribe tu nombre"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- ASISTENCIA -->
+                <div class="campo-formulario">
+
+                    <p class="titulo-campo">
+                        ¿Asistirás?
+                    </p>
+
+                    <label class="opcion">
+
+                        <input
+                            type="radio"
+                            name="asistencia"
+                            value="Sí asistiré"
+                            required
+                        >
+
+                        Sí asistiré
+
+                    </label>
+
+                    <label class="opcion">
+
+                        <input
+                            type="radio"
+                            name="asistencia"
+                            value="No podré asistir"
+                        >
+
+                        No podré asistir
+
+                    </label>
+
+                </div>
+
+
+                <!-- PASES -->
+                <div
+                    class="campo-formulario"
+                    id="campoCantidadPases"
+                >
+
+                    <label for="cantidadPases">
+                        Número de pases
+                    </label>
+
+                    <select
+                        id="cantidadPases"
+                        name="cantidadPases"
+                        required
+                    >
+
+                        <option value="">
+                            Selecciona una cantidad
+                        </option>
+
+                        <option value="1">1 pase</option>
+                        <option value="2">2 pases</option>
+                        <option value="3">3 pases</option>
+                        <option value="4">4 pases</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- ACOMPAÑANTES -->
+                <div
+                    class="campo-formulario"
+                    id="campoAcompanantes"
+                    hidden
+                >
+
+                    <label for="nombresAcompanantes">
+                        Nombres de tus acompañantes
+                    </label>
+
+                    <textarea
+                        id="nombresAcompanantes"
+                        name="nombresAcompanantes"
+                        placeholder="Escribe los nombres de tus acompañantes"
+                    ></textarea>
+
+                </div>
+
+
+                <!-- BOTÓN -->
+                <button
+                    type="submit"
+                    id="botonRSVP"
+                >
+                    Confirmar asistencia
+                </button>
+
+            </form>
+
+
+            <!-- MENSAJE -->
+            <div
+                id="mensajeRSVP"
+                class="mensaje-rsvp"
+                aria-live="polite"
+            ></div>
+
+        </section>
+
+
+        <!-- FINAL -->
+        <section class="final">
+
+            <div>
+
+                <p id="textoCierre">
+                    Con amor
+                </p>
+
+                <h2 id="nombresFinales">
+                    Andrea & Carlos
+                </h2>
+
+                <p id="fechaFinal">
+                    14 · 11 · 2026
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- MÚSICA -->
+    <audio
+        id="musicaBoda"
+        loop
+    >
+
+        <source
+            src="musica/cancion.mp3"
+            type="audio/mpeg"
+        >
+
+    </audio>
+
+
+    <button
+        id="botonMusica"
+        type="button"
+        aria-label="Reproducir música"
+    >
+        ♪
+    </button>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="datos.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
