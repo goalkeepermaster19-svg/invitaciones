@@ -58,7 +58,9 @@ window.glamInvitacionCallback = function (respuesta) {
 
 
 document.addEventListener("DOMContentLoaded", function () {
+    cargarInvitadoGLAM();
 
+   
     /* =====================================================
        1. CONFIGURACIÓN GENERAL
        ===================================================== */
