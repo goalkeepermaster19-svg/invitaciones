@@ -339,18 +339,27 @@ document.addEventListener("DOMContentLoaded", function () {
        7. ABRIR INVITACIÓN
        ===================================================== */
 
-    if (botonAbrir && contenido) {
+   // APERTURA DE INVITACIÓN
+document.addEventListener("click", function (e) {
 
-        botonAbrir.addEventListener("click", function () {
+    const boton = e.target.closest("#abrirInvitacion");
 
-            contenido.classList.remove("oculto");
+    if (!boton) return;
 
-            contenido.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
+    console.log("GLAM: apertura de invitación detectada");
+
+    const contenido = document.getElementById("contenido");
+
+    if (contenido) {
+        contenido.classList.remove("oculto");
+
+        contenido.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
         });
     }
+
+});
 
 
     /* =====================================================
