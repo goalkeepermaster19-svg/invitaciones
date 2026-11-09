@@ -3,6 +3,60 @@
    MOTOR PRINCIPAL DE INVITACIONES
    ===================================================== */
 
+// CONEXIÓN CON GOOGLE APPS SCRIPT
+const GLAM_API_URL = "https://script.google.com/macros/s/AKfycbyCNw7z1eAWgfhUT-tpO7wNErQLXyZu9VvUVTBEWJLMwX2FuUYr3NbWaJUphT7yjkkXvg/exec";
+
+// DATOS DEL INVITADO ACTUAL
+window.glamInvitadoActual = null;
+
+// TOKEN DEL ENLACE PERSONALIZADO
+const GLAM_TOKEN = new URLSearchParams(
+    window.location.search
+).get("token");
+
+// CONSULTA DEL INVITADO MEDIANTE JSONP
+function cargarInvitadoGLAM() {
+
+    if (!GLAM_TOKEN) {
+        console.log("Invitación abierta sin token individual.");
+        return;
+    }
+
+    const script = document.createElement("script");
+
+    script.src =
+        GLAM_API_URL +
+        "?token=" + encodeURIComponent(GLAM_TOKEN) +
+        "&callback=glamInvitacionCallback";
+
+    script.onerror = function () {
+        console.error("No se pudo conectar con GLAM INVITATIONS.");
+    };
+
+    document.body.appendChild(script);
+}
+
+// RESPUESTA DEL BACKEND
+window.glamInvitacionCallback = function (respuesta) {
+
+    console.log("Respuesta del backend GLAM:", respuesta);
+
+    if (!respuesta || respuesta.correcto !== true) {
+        console.error(
+            respuesta?.mensaje || "No se pudo identificar al invitado."
+        );
+        return;
+    }
+
+    window.glamInvitadoActual = respuesta.invitado;
+
+    console.log(
+        "Invitado identificado:",
+        window.glamInvitadoActual.nombre
+    );
+};
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
