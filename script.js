@@ -1350,4 +1350,4 @@ document.addEventListener("DOMContentLoaded", function () {
         funciones
     );
 
-});
+})
