@@ -76,6 +76,10 @@ window.glamInvitacionCallback = function (respuesta) {
 
         campoNombre.readOnly = true;
 
+        campoNombre.dispatchEvent(
+            new Event("input", { bubbles: true })
+        );
+
     }
 
     // AUTOCOMPLETAR CANTIDAD DE PASES
@@ -90,6 +94,10 @@ window.glamInvitacionCallback = function (respuesta) {
         campoCantidad.value =
             invitado.pasesConfirmados ||
             invitado.pasesAsignados;
+
+        campoCantidad.dispatchEvent(
+            new Event("change", { bubbles: true })
+        );
 
     }
 
@@ -122,11 +130,6 @@ window.glamInvitacionCallback = function (respuesta) {
    ===================================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
-
-
-    // INICIAR CONEXIÓN CON GOOGLE SHEETS
-
-    cargarInvitadoGLAM();
 
 
     /* =====================================================
@@ -1161,7 +1164,8 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    // PREPARAR FORMULARIO SI EL INVITADO YA ESTÁ IDENTIFICADO
+    // SI EL INVITADO YA FUE IDENTIFICADO,
+    // SINCRONIZAR LOS CAMPOS DEL FORMULARIO.
 
     function prepararFormularioRSVP() {
 
@@ -1196,31 +1200,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
 
-        console.log(
-            "Formulario RSVP preparado:",
-            invitado.nombre
-        );
-
     }
 
 
-    // COMPROBAR SI EL INVITADO YA LLEGÓ
+    // COMPROBAR SI EL INVITADO YA ESTÁ IDENTIFICADO
 
     prepararFormularioRSVP();
-
-
-    // ACTUALIZAR FORMULARIO SI EL INVITADO LLEGA DESPUÉS
-
-    const callbackOriginal =
-        window.glamInvitacionCallback;
-
-    window.glamInvitacionCallback = function (respuesta) {
-
-        callbackOriginal(respuesta);
-
-        prepararFormularioRSVP();
-
-    };
 
 
     // ENVÍO DEL FORMULARIO
@@ -1435,7 +1420,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       20. INFORMACIÓN DE PRUEBA
+       20. INICIAR CONEXIÓN CON GOOGLE SHEETS
+       ===================================================== */
+
+    cargarInvitadoGLAM();
+
+
+    /* =====================================================
+       21. INFORMACIÓN DE PRUEBA
        ===================================================== */
 
     console.log(
