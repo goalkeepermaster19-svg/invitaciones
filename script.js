@@ -1,3 +1,4 @@
+```javascript
 /* =====================================================
    GLAM INVITATIONS
    MOTOR PRINCIPAL DE INVITACIONES
@@ -65,8 +66,6 @@ window.glamInvitacionCallback = function (respuesta) {
 
     const invitado = respuesta.invitado;
 
-    // AUTOCOMPLETAR NOMBRE
-
     const campoNombre =
         document.getElementById("nombreInvitado");
 
@@ -79,10 +78,7 @@ window.glamInvitacionCallback = function (respuesta) {
         campoNombre.dispatchEvent(
             new Event("input", { bubbles: true })
         );
-
     }
-
-    // AUTOCOMPLETAR CANTIDAD DE PASES
 
     const campoCantidad =
         document.getElementById("cantidadPases");
@@ -98,10 +94,7 @@ window.glamInvitacionCallback = function (respuesta) {
         campoCantidad.dispatchEvent(
             new Event("change", { bubbles: true })
         );
-
     }
-
-    // AUTOCOMPLETAR ACOMPAÑANTES
 
     const campoAcompanantes =
         document.getElementById("nombresAcompanantes");
@@ -110,7 +103,6 @@ window.glamInvitacionCallback = function (respuesta) {
 
         campoAcompanantes.value =
             invitado.acompanantes || "";
-
     }
 
     console.log(
@@ -118,10 +110,7 @@ window.glamInvitacionCallback = function (respuesta) {
         invitado.nombre
     );
 
-    console.log(
-        "Formulario RSVP actualizado."
-    );
-
+    console.log("Formulario RSVP actualizado.");
 };
 
 
@@ -176,9 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
        ===================================================== */
 
     function obtener(id) {
-
         return document.getElementById(id);
-
     }
 
     function texto(id, valor) {
@@ -190,11 +177,8 @@ document.addEventListener("DOMContentLoaded", function () {
             valor !== undefined &&
             valor !== null
         ) {
-
             elemento.textContent = valor;
-
         }
-
     }
 
     function mostrar(id, condicion) {
@@ -202,21 +186,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const elemento = obtener(id);
 
         if (elemento) {
-
             elemento.hidden = !condicion;
-
         }
-
     }
 
     function mostrarElemento(elemento, condicion) {
 
         if (elemento) {
-
             elemento.hidden = !condicion;
-
         }
-
     }
 
     function establecerEnlace(id, url) {
@@ -228,26 +206,20 @@ document.addEventListener("DOMContentLoaded", function () {
         if (url) {
 
             elemento.href = url;
-
             elemento.target = "_blank";
-
             elemento.rel = "noopener noreferrer";
-
             elemento.hidden = false;
 
         } else {
 
             elemento.hidden = true;
-
         }
-
     }
 
     function fechaValida(fecha) {
 
         return fecha instanceof Date &&
             !isNaN(fecha.getTime());
-
     }
 
 
@@ -315,7 +287,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         portada.style.backgroundImage =
             `url("${evento.portada.imagen}")`;
-
     }
 
     const botonAbrir = obtener("abrirInvitacion");
@@ -328,7 +299,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "abrirInvitacion",
             evento.portada.boton
         );
-
     }
 
     if (fechaValida(fechaEvento)) {
@@ -352,7 +322,6 @@ document.addEventListener("DOMContentLoaded", function () {
             mesAnio.innerHTML =
                 `${meses[fechaEvento.getMonth()]}<br>` +
                 `<strong>${fechaEvento.getFullYear()}</strong>`;
-
         }
 
         texto(
@@ -363,7 +332,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 year: "numeric"
             })
         );
-
     }
 
 
@@ -378,15 +346,10 @@ document.addEventListener("DOMContentLoaded", function () {
             contenido.classList.remove("oculto");
 
             contenido.scrollIntoView({
-
                 behavior: "smooth",
-
                 block: "start"
-
             });
-
         });
-
     }
 
 
@@ -522,9 +485,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
 
         mostrar("mapaCeremonia", false);
-
         mostrar("mapaRecepcion", false);
-
     }
 
 
@@ -570,10 +531,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 elemento.append(hora, descripcion);
 
                 listaItinerario.appendChild(elemento);
-
             }
         );
-
     }
 
 
@@ -602,7 +561,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "indicacionesDressCode",
             dressCode.indicaciones || ""
         );
-
     }
 
 
@@ -653,10 +611,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 elemento.append(tipo, descripcion);
 
                 listaRegalos.appendChild(elemento);
-
             }
         );
-
     }
 
 
@@ -681,13 +637,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (diferencia <= 0) {
 
             ids.forEach(function (id) {
-
                 texto(id, "00");
-
             });
 
             return;
-
         }
 
         const dias = Math.floor(
@@ -725,7 +678,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "segundos",
             String(segundos).padStart(2, "0")
         );
-
     }
 
     if (funciones.contador === true) {
@@ -733,7 +685,6 @@ document.addEventListener("DOMContentLoaded", function () {
         actualizarContador();
 
         setInterval(actualizarContador, 1000);
-
     }
 
 
@@ -744,13 +695,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const fotos = multimedia.galeria?.fotos || [];
 
     const imagenesGaleria = [
-
         obtener("fotoGaleria1"),
-
         obtener("fotoGaleria2"),
-
         obtener("fotoGaleria3")
-
     ];
 
     imagenesGaleria.forEach(
@@ -761,15 +708,12 @@ document.addEventListener("DOMContentLoaded", function () {
             if (fotos[indice]) {
 
                 imagen.src = fotos[indice];
-
                 imagen.hidden = false;
 
             } else {
 
                 imagen.hidden = true;
-
             }
-
         }
     );
 
@@ -793,7 +737,6 @@ document.addEventListener("DOMContentLoaded", function () {
         visor.style.display = "flex";
 
         document.body.style.overflow = "hidden";
-
     }
 
     function cerrarVisor() {
@@ -805,7 +748,6 @@ document.addEventListener("DOMContentLoaded", function () {
         visor.style.display = "none";
 
         document.body.style.overflow = "";
-
     }
 
     imagenesGaleria.forEach(
@@ -814,11 +756,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!imagen) return;
 
             imagen.addEventListener("click", function () {
-
                 mostrarFoto(indice);
-
             });
-
         }
     );
 
@@ -829,32 +768,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const siguiente = obtener("fotoSiguiente");
 
     if (cerrarFoto) {
-
-        cerrarFoto.addEventListener(
-            "click",
-            cerrarVisor
-        );
-
+        cerrarFoto.addEventListener("click", cerrarVisor);
     }
 
     if (anterior) {
 
         anterior.addEventListener("click", function () {
-
             mostrarFoto(indiceFotoActual - 1);
-
         });
-
     }
 
     if (siguiente) {
 
         siguiente.addEventListener("click", function () {
-
             mostrarFoto(indiceFotoActual + 1);
-
         });
-
     }
 
     if (visor) {
@@ -862,13 +790,9 @@ document.addEventListener("DOMContentLoaded", function () {
         visor.addEventListener("click", function (e) {
 
             if (e.target === visor) {
-
                 cerrarVisor();
-
             }
-
         });
-
     }
 
     document.addEventListener("keydown", function (e) {
@@ -876,23 +800,16 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!visor || !visor.classList.contains("activo")) return;
 
         if (e.key === "Escape") {
-
             cerrarVisor();
-
         }
 
         if (e.key === "ArrowLeft") {
-
             mostrarFoto(indiceFotoActual - 1);
-
         }
 
         if (e.key === "ArrowRight") {
-
             mostrarFoto(indiceFotoActual + 1);
-
         }
-
     });
 
 
@@ -918,17 +835,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.createElement("video");
 
             video.src = archivo;
-
             video.controls = true;
-
             video.playsInline = true;
-
             video.preload = "metadata";
 
             contenedorVideos.appendChild(video);
-
         });
-
     }
 
 
@@ -948,9 +860,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
 
         if (multimedia.musica.archivo) {
-
             musica.src = multimedia.musica.archivo;
-
         }
 
         botonMusica.addEventListener("click", function () {
@@ -972,7 +882,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         "Error al reproducir música:",
                         error
                     );
-
                 });
 
             } else {
@@ -985,11 +894,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     "aria-pressed",
                     "false"
                 );
-
             }
-
         });
-
     }
 
 
@@ -1036,7 +942,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 ).padStart(2, "0") +
 
                 "00";
-
         }
 
         const tituloCalendar =
@@ -1051,7 +956,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const parametros = new URLSearchParams({
 
             action: "TEMPLATE",
-
             text: tituloCalendar,
 
             dates:
@@ -1059,13 +963,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 `${formatoCalendar(fechaFin)}`,
 
             details: datosEvento.mensaje || "",
-
             location: ubicacionCalendar,
 
             ctz:
                 datosEvento.zonaHoraria ||
                 "America/La_Paz"
-
         });
 
         botonCalendario.href =
@@ -1075,7 +977,6 @@ document.addEventListener("DOMContentLoaded", function () {
         botonCalendario.target = "_blank";
 
         botonCalendario.rel = "noopener noreferrer";
-
     }
 
 
@@ -1116,12 +1017,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     mensajeFotos.textContent =
                         "El espacio para compartir fotografías " +
                         "todavía está en configuración.";
-
                 }
-
             }
         );
-
     }
 
 
@@ -1164,8 +1062,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    // SI EL INVITADO YA FUE IDENTIFICADO,
-    // SINCRONIZAR LOS CAMPOS DEL FORMULARIO.
+    // SINCRONIZAR LOS CAMPOS DEL FORMULARIO
 
     function prepararFormularioRSVP() {
 
@@ -1179,7 +1076,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 invitado.nombre || "";
 
             inputNombre.readOnly = true;
-
         }
 
         if (inputCantidadPases) {
@@ -1190,20 +1086,15 @@ document.addEventListener("DOMContentLoaded", function () {
             inputCantidadPases.value =
                 invitado.pasesConfirmados ||
                 invitado.pasesAsignados;
-
         }
 
         if (inputAcompanantes) {
 
             inputAcompanantes.value =
                 invitado.acompanantes || "";
-
         }
-
     }
 
-
-    // COMPROBAR SI EL INVITADO YA ESTÁ IDENTIFICADO
 
     prepararFormularioRSVP();
 
@@ -1228,15 +1119,13 @@ document.addEventListener("DOMContentLoaded", function () {
                         mensajeRSVP.textContent =
                             "No pudimos identificar tu invitación. " +
                             "Por favor, ingresa mediante tu enlace personalizado.";
-
                     }
 
                     return;
-
                 }
 
 
-                // VALIDAR ASISTENCIA
+                // VALIDAR QUE SE HAYA SELECCIONADO ASISTENCIA
 
                 const asistenciaSeleccionada =
                     document.querySelector(
@@ -1249,19 +1138,47 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         mensajeRSVP.textContent =
                             "Por favor, indica si asistirás.";
-
                     }
 
                     return;
-
                 }
 
 
-                const asistencia =
+                // NORMALIZAR EL TEXTO DE ASISTENCIA
+
+                const asistenciaTexto =
                     asistenciaSeleccionada.value
                         .toUpperCase()
                         .normalize("NFD")
-                        .replace(/[\u0300-\u036f]/g, "");
+                        .replace(/[\u0300-\u036f]/g, "")
+                        .trim();
+
+                let asistencia = "";
+
+                if (asistenciaTexto.startsWith("SI")) {
+
+                    asistencia = "SI";
+
+                } else if (asistenciaTexto.startsWith("NO")) {
+
+                    asistencia = "NO";
+
+                } else {
+
+                    if (mensajeRSVP) {
+
+                        mensajeRSVP.textContent =
+                            "La opción de asistencia no es válida.";
+                    }
+
+                    console.error(
+                        "Valor de asistencia no reconocido:",
+                        asistenciaSeleccionada.value
+                    );
+
+                    return;
+                }
+
 
                 const nombre = invitado.nombre;
 
@@ -1272,7 +1189,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // SI ASISTIRÁ
 
-                if (asistencia === "Sí asistiré") {
+                if (asistencia === "SI") {
 
                     cantidadPases = inputCantidadPases
                         ? Number(inputCantidadPases.value)
@@ -1290,31 +1207,16 @@ document.addEventListener("DOMContentLoaded", function () {
                             mensajeRSVP.textContent =
                                 "La cantidad de pases no es válida. " +
                                 "Revisa los pases asignados a tu invitación.";
-
                         }
 
                         return;
-
                     }
 
                     if (inputAcompanantes) {
 
                         acompanantes =
                             inputAcompanantes.value.trim();
-
                     }
-
-                } else if (asistencia !== "No podré asistir") {
-
-                    if (mensajeRSVP) {
-
-                        mensajeRSVP.textContent =
-                            "La opción de asistencia no es válida.";
-
-                    }
-
-                    return;
-
                 }
 
 
@@ -1348,14 +1250,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     botonEnviar.textContent =
                         "ENVIANDO...";
-
                 }
 
                 if (mensajeRSVP) {
 
                     mensajeRSVP.textContent =
                         "Estamos registrando tu confirmación...";
-
                 }
 
 
@@ -1370,12 +1270,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         mode: "no-cors",
 
                         body: datos
-
                     });
 
-
                     console.log(
-                        "Solicitud RSVP enviada al backend GLAM."
+                        "Solicitud RSVP enviada al backend GLAM.",
+                        {
+                            asistencia: asistencia,
+                            cantidadPases: cantidadPases,
+                            acompanantes: acompanantes
+                        }
                     );
 
                     if (mensajeRSVP) {
@@ -1384,7 +1287,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             "¡Gracias, " + nombre +
                             "! Tu respuesta fue enviada. " +
                             "Estamos procesando tu confirmación.";
-
                     }
 
                 } catch (error) {
@@ -1399,7 +1301,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         mensajeRSVP.textContent =
                             "No pudimos enviar tu respuesta. " +
                             "Por favor, inténtalo nuevamente.";
-
                     }
 
                     if (botonEnviar) {
@@ -1408,14 +1309,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         botonEnviar.textContent =
                             "CONFIRMAR";
-
                     }
-
                 }
-
             }
         );
-
     }
 
 
@@ -1455,3 +1352,4 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 });
+```
