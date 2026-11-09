@@ -1154,11 +1154,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         .trim();
 
                 let asistencia = "";
-               console.log("DEBUG RSVP:", {
-    valorOriginal: asistenciaSeleccionada.value,
-    valorNormalizado: asistenciaTexto
-});
-
+   
                 if (asistenciaTexto.startsWith("SI")) {
 
                     asistencia = "SI";
