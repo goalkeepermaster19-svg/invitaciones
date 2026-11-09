@@ -1,4 +1,4 @@
-```javascript
+javascript
 /* =====================================================
    GLAM INVITATIONS
    MOTOR PRINCIPAL DE INVITACIONES
@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
         datosEvento.horaPrincipal || "17:00";
 
     const fechaEvento = fechaISO
-        ? new Date(`${fechaISO}T${horaPrincipal}:00`)
+        ? new Date(fechaISO+"T"+horaPrincipal":00")
         : null;
 
 
