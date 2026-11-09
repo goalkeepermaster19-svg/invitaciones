@@ -335,36 +335,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =====================================================
+        /* =====================================================
        7. ABRIR INVITACIÓN
        ===================================================== */
 
-   // APERTURA DE INVITACIÓN
-document.addEventListener("click", function (e) {
+    if (botonAbrir && contenido) {
 
-  // APERTURA DE INVITACIÓN
-document.addEventListener("click", function (e) {
+        botonAbrir.addEventListener("click", function () {
 
-    const boton = e.target.closest("#abrirInvitacion");
+            contenido.classList.remove("oculto");
 
-    if (!boton) return;
+            contenido.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
 
-    const contenido = document.getElementById("contenido");
-
-    if (!contenido) return;
-
-    contenido.classList.remove("oculto");
-
-    setTimeout(function () {
-        contenido.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
         });
-    }, 100);
 
-});
-
-
+    }
     /* =====================================================
        8. ACTIVACIÓN DE FUNCIONES POR PAQUETE
        ===================================================== */
