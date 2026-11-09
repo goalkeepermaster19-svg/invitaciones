@@ -1272,7 +1272,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // SI ASISTIRÁ
 
-                if (asistencia === "SI") {
+                if (asistencia === "Sí asistiré") {
 
                     cantidadPases = inputCantidadPases
                         ? Number(inputCantidadPases.value)
@@ -1304,7 +1304,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     }
 
-                } else if (asistencia !== "NO") {
+                } else if (asistencia !== "No podré asistir") {
 
                     if (mensajeRSVP) {
 
